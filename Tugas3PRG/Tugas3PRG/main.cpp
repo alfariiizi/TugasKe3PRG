@@ -18,33 +18,36 @@ int main()
 	cout << "Data yang di-inginkan : "; cin >> nData; cin.get();	// input banyaknya data
 	nData = abs(nData);	// tetap mengambil nilai positif jika input n data negatif
 
-	vector<int> Data(nData, 0);	// vector dengan nama "Data", mengalokasikan memori sebanyak "nData", serta menginialisasikan nilai awal seluruh anggota ke 0
-
-	for (int i = 0; i < nData; i++)
+	if (nData != 0)		// agar tidak usah diapa-apakan jika input nData = 0
 	{
-		InitData(Data, i, nData);	// fungsi untuk menginialisasikan data, dan diantara data tersebut tidak ada yang memiliki nilai yang sama
-		cout << Data[i] << " ";		// menampilkan data yang sudah mendapatkan nilai
-		if ((i + 1) % 10 == 0 && i + 1 != nData)	// membuat double new line dalam output, jika data yang dioutputkan sudah sampai 10
+		vector<int> Data(nData, 0);	// vector dengan nama "Data", mengalokasikan memori sebanyak "nData", serta menginialisasikan nilai awal seluruh anggota ke 0
+
+		for (int i = 0; i < nData; i++)
 		{
-			cout << endl << endl;
+			InitData(Data, i, nData);	// fungsi untuk menginialisasikan data, dan diantara data tersebut tidak ada yang memiliki nilai yang sama
+			cout << Data[i] << " ";		// menampilkan data yang sudah mendapatkan nilai
+			if ((i + 1) % 10 == 0 && i + 1 != nData)	// membuat double new line dalam output, jika data yang dioutputkan sudah sampai 10
+			{
+				cout << endl << endl;
+			}
 		}
-	}
 
-	sort(Data.begin(), Data.end());		// men-sorting seluruh data
+		sort(Data.begin(), Data.end());		// men-sorting seluruh data
 
-	cout << endl << endl << endl << endl;
+		cout << endl << endl << endl << endl;
 
-	cout << "Diurutkan : " << endl;
-	for (int i = 0; i < nData; i++)		// menampilkan semua data yang sudah diurutkan
-	{
-		cout << Data[i] << " ";
-		if ((i + 1) % 10 == 0 && i + 1 != nData)	// membuat double new line dalam output, jika data yang dioutputkan sudah sampai 10
+		cout << "Diurutkan : " << endl;
+		for (int i = 0; i < nData; i++)		// menampilkan semua data yang sudah diurutkan
 		{
-			cout << endl << endl;
+			cout << Data[i] << " ";
+			if ((i + 1) % 10 == 0 && i + 1 != nData)	// membuat double new line dalam output, jika data yang dioutputkan sudah sampai 10
+			{
+				cout << endl << endl;
+			}
 		}
-	}
 
-	Data.clear();	// menghapus memori yang sudah dialokasikan, karena sudah tidak terpakai
+		Data.clear();	// menghapus memori yang sudah dialokasikan, karena sudah tidak terpakai
+	}
 	cin.get();
 	return 0;
 }
