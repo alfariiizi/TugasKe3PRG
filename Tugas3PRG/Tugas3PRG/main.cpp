@@ -9,7 +9,7 @@
 using namespace std;
 
 void InitData(vector<int>& Data, int& i, int& nData);
-bool HasTaken(int& DataVal, vector<int>& b, int& nData, int& i);
+bool HasBeenTaken(int& DataVal, vector<int>& b, int& nData, int& i);
 
 int main()
 {
@@ -57,11 +57,11 @@ void InitData(vector<int>& Data, int& i,int& nData)	// menginialisasikan Data ke
 	do
 	{
 		Data[i] = rand() % nData + 1;	// menginisialisasikan data ke suatu nilai dari rentang 1 sampai nData
-	} while ( HasTaken(Data[i], Data, nData, i) );	// jika nilai dalam data tersebut pernah dimiliki oleh data lain, maka akan looping keatas lagi
+	} while ( HasBeenTaken(Data[i], Data, nData, i) );	// jika nilai dalam data tersebut pernah dimiliki oleh data lain, maka akan looping keatas lagi
 													// jika nilai dalam data tersebut belum pernah dimiliki oleh data lain, maka akan stop looping
 }
 
-bool HasTaken(int& DataVal, vector<int>& b, int& nData, int& i)	// mengecek apakah nilai dalam data tersebut pernah dimiliki oleh data lain
+bool HasBeenTaken(int& DataVal, vector<int>& b, int& nData, int& i)	// mengecek apakah nilai dalam data tersebut pernah dimiliki oleh data lain
 {
 	bool equivalent = false;
 	for (int j = 0; j < nData; j++)
