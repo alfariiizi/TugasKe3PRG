@@ -8,8 +8,8 @@
 
 using namespace std;
 
-void notRepeat(vector<int>& Data, int& i, int& nData);
-bool IsRepeat(int& DataVal, vector<int>& b, int& nData, int& i);
+void InitData(vector<int>& Data, int& i, int& nData);
+bool HasTaken(int& DataVal, vector<int>& b, int& nData, int& i);
 
 int main()
 {
@@ -22,50 +22,51 @@ int main()
 
 	for (int i = 0; i < nData; i++)
 	{
-		notRepeat(Data, i, nData);
-		cout << Data[i] << " ";
-		if ((i + 1) % 10 == 0 && i + 1 != nData)
+		InitData(Data, i, nData);	// fungsi untuk menginialisasikan data, dan diantara data tersebut tidak ada yang memiliki nilai yang sama
+		cout << Data[i] << " ";		// menampilkan data yang sudah mendapatkan nilai
+		if ((i + 1) % 10 == 0 && i + 1 != nData)	// membuat double new line dalam output, jika data yang dioutputkan sudah sampai 10
 		{
 			cout << endl << endl;
 		}
 	}
 
-	sort(Data.begin(), Data.end());
+	sort(Data.begin(), Data.end());		// men-sorting seluruh data
 
 	cout << endl << endl << endl << endl;
+
 	cout << "Diurutkan : " << endl;
-	for (int i = 0; i < nData; i++)
+	for (int i = 0; i < nData; i++)		// menampilkan semua data yang sudah diurutkan
 	{
 		cout << Data[i] << " ";
-		if ((i + 1) % 10 == 0 && i + 1 != nData)
+		if ((i + 1) % 10 == 0 && i + 1 != nData)	// membuat double new line dalam output, jika data yang dioutputkan sudah sampai 10
 		{
 			cout << endl << endl;
 		}
 	}
 
-	Data.clear();
+	Data.clear();	// menghapus memori yang sudah dialokasikan, karena sudah tidak terpakai
 	cin.get();
 	return 0;
 }
 
-void notRepeat(vector<int>& Data, int& i,int& nData)
+void InitData(vector<int>& Data, int& i,int& nData)	// menginialisasikan Data ke suatu nilai, tetapi tdk ada yg menyamai nilai tersebut
 {
 	do
 	{
-		Data[i] = rand() % nData + 1;
-	} while ( IsRepeat(Data[i], Data, nData, i) );
-
+		Data[i] = rand() % nData + 1;	// menginisialisasikan data ke suatu nilai dari rentang 1 sampai nData
+	} while ( HasTaken(Data[i], Data, nData, i) );	// jika nilai dalam data tersebut pernah dimiliki oleh data lain, maka akan looping keatas lagi
+													// jika nilai dalam data tersebut belum pernah dimiliki oleh data lain, maka akan stop looping
 }
 
-bool IsRepeat(int& DataVal, vector<int>& b, int& nData, int& i)
+bool HasTaken(int& DataVal, vector<int>& b, int& nData, int& i)	// mengecek apakah nilai dalam data tersebut pernah dimiliki oleh data lain
 {
 	bool equivalent = false;
 	for (int j = 0; j < nData; j++)
 	{
-		if (j != i && DataVal == b[j])
+		if (j != i && DataVal == b[j])	// jika nilai dalam data tersebut pernah dimiliki oleh data lain, maka equivalent = true
 		{
 			equivalent = true;
-			break;
+			break;	// agar tidak usah meneruskan looping jika memang sudah ada 1 data yang mempunyai nilai sama
 		}
 	}
 
